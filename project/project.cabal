@@ -1,0 +1,90 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.35.2.
+--
+-- see: https://github.com/sol/hpack
+
+name:           project
+version:        0.0.1
+build-type:     Simple
+
+flag use-effectful-plugin
+  manual: True
+  default: False
+
+library
+  exposed-modules:
+      Lib.Top
+      Regex.Glushkov
+      Regex.Reg
+  other-modules:
+      Paths_project
+  hs-source-dirs:
+      lib
+  default-extensions:
+      BlockArguments
+      LambdaCase
+      DataKinds
+      OverloadedLists
+      OverloadedStrings
+      TemplateHaskell
+      TypeFamilies
+      UnicodeSyntax
+      ViewPatterns
+  build-depends:
+      base
+    , containers
+    , effectful
+    , effectful-core
+    , effectful-plugin
+    , effectful-th
+    , optics
+    , optics-core
+    , optics-extra
+    , optics-th
+    , pretty-simple
+    , recursion-schemes
+    , semirings
+    , text
+    , vector
+  default-language: GHC2021
+  if flag(use-effectful-plugin)
+    ghc-options: -fplugin=Effectful.Plugin
+
+executable project-exe
+  main-is: Top.hs
+  other-modules:
+      Paths_project
+  hs-source-dirs:
+      app
+  default-extensions:
+      BlockArguments
+      LambdaCase
+      DataKinds
+      OverloadedLists
+      OverloadedStrings
+      TemplateHaskell
+      TypeFamilies
+      UnicodeSyntax
+      ViewPatterns
+  ghc-options: -main-is Top
+  build-depends:
+      base
+    , containers
+    , effectful
+    , effectful-core
+    , effectful-plugin
+    , effectful-th
+    , optics
+    , optics-core
+    , optics-extra
+    , optics-th
+    , pretty-simple
+    , project
+    , recursion-schemes
+    , semirings
+    , text
+    , vector
+  default-language: GHC2021
+  if flag(use-effectful-plugin)
+    ghc-options: -fplugin=Effectful.Plugin

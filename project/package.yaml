@@ -1,0 +1,54 @@
+name: project
+version: 0.0.1
+
+language: GHC2021
+
+default-extensions:
+  - BlockArguments
+  - LambdaCase
+  - DataKinds
+  - OverloadedLists
+  - OverloadedStrings
+  - TemplateHaskell
+  - TypeFamilies
+  - UnicodeSyntax
+  - ViewPatterns
+
+dependencies:
+  - base
+  - containers
+  - pretty-simple
+  - recursion-schemes
+  - semirings
+  - text
+  - vector
+
+  - optics-core
+  - optics-extra
+  - optics-th
+  - optics
+
+  - effectful-core
+  - effectful-plugin
+  - effectful-th
+  - effectful
+
+flags:
+  use-effectful-plugin:
+    manual: True
+    default: False
+
+when:
+  - condition: flag(use-effectful-plugin)
+    ghc-options:
+      - -fplugin=Effectful.Plugin
+
+library:
+  source-dirs: lib
+
+executables:
+  project-exe:
+    source-dirs: app
+    main: Top
+    dependencies:
+      - project
